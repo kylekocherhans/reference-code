@@ -7,6 +7,8 @@ const { SERVER_PORT } = process.env
 const { sequelize } = require('./util/db');
 const { User } = require('./models/user');
 const { Reference } = require('./models/reference');
+const { register, login } = require('./controllers/authCtrl');
+const { addReference } = require('./controllers/referencesCtrl');
 
 const app = express();
 
@@ -16,10 +18,10 @@ app.use(cors());
 User.hasMany(Reference);
 Reference.belongsTo(User);
 
-const { register, login } = require('./controllers/authCtrl');
+app.post('/api/register', register);
+app.post('/api/login', login);
 
-app.post('/register', register);
-app.post('/login', login);
+app.post('/api/references', addReference);
 
 // sequelize.sync({ force: true }) // DROPS TABLES
 sequelize.sync()

@@ -21,11 +21,11 @@ const Auth = () => {
             password
         }
 
-        const url = register ? '/register' : '/login';
+        const url = register ? '/api/register' : '/api/login';
 
         axios.post(url, body)
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             authCtx.login(res.data.token, res.data.exp, res.data.userId);
         })
         .catch(err => {

@@ -1,7 +1,8 @@
 import {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-
 import AuthContext from '../store/authContext';
+
+import ReferenceCard from './ReferenceCard';
 
 const Home = () => {
     const {userId, token} = useContext(AuthContext);
@@ -9,14 +10,14 @@ const Home = () => {
     const [references, setReferences] = useState([]);
 
     useEffect(() => {
-        axios.get(`/api/references/${userId}`, {
+        axios.get(`/api/userReferences/${userId}`, {
             headers: {
                 authorization: token
             }
         })
         .then(res => {
             console.log(res.data);
-            // setReferences(res.data);
+            setReferences(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -24,7 +25,11 @@ const Home = () => {
     }, []);
 
     return (
-        <div>Home</div>
+        <div>
+            {references.map(reference => {
+                return <ReferenceCard reference={reference} key={reference.id}/>
+            })}
+        </div>
     );
 };
 

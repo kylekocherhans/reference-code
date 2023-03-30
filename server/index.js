@@ -16,13 +16,14 @@ User.hasMany(Reference);
 Reference.belongsTo(User);
 
 const { register, login } = require('./controllers/authCtrl');
-const { getUserReferences, addReference } = require('./controllers/referencesCtrl');
+const { getUserReferences, getReference, addReference } = require('./controllers/referencesCtrl');
 const { isAuthenticated } = require('./middleware/isAuthenticated');
 
 app.post('/api/register', register);
 app.post('/api/login', login);
 
-app.get('/api/references/:userId', isAuthenticated, getUserReferences);
+app.get('/api/userReferences/:userId', isAuthenticated, getUserReferences);
+app.get('/api/references/:id', isAuthenticated, getReference);
 app.post('/api/references', isAuthenticated, addReference);
 
 // sequelize.sync({ force: true }) // DROPS TABLES

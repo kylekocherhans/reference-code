@@ -21,6 +21,8 @@ const AddReference = () => {
         // })
         // .catch((err) => console.log(err));
 
+        console.log("SUMBIT")
+
         axios.post("/api/references", { title, description, snippet, notes, userId }, {
             headers: {
                 authorization: token

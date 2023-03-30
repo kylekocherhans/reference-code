@@ -4,11 +4,11 @@ import AuthContext from "../store/authContext";
 
 const Header = () => {
     const authCtx = useContext(AuthContext);
-    
+
     return (
         <div>
-            <NavLink to='home'>Home</NavLink>
-            <NavLink to='add'>Add Reference</NavLink>
+            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/add'>Add Reference</NavLink>
             <button className="logout-btn" onClick={() => authCtx.logout()}>Logout</button>
         </div>
     );

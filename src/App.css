@@ -45,3 +45,7 @@
 #add-form input {
     width: 400px;
 }
+
+.code-container {
+    font-family: "Fira Code";
+}

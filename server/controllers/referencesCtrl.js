@@ -47,5 +47,34 @@ module.exports = {
             console.log(err);
             res.status(500).send('Adding the reference failed!');
         }
+    },
+
+    editReference: async (req, res) => {
+        try {
+            const { id, userId, title, description, snippet, notes } = req.body;
+
+            const results = await Reference.update(
+                {
+                    userId,
+                    title,
+                    description,
+                    snippet,
+                    notes
+                },
+                { 
+                    where: {id},
+                    returning: true
+                }
+            );
+
+            console.log("Reference");
+            console.log(results[1]);
+
+            res.status(200).send(results[1][0]);
+        } catch (err) {
+            console.log('ERROR IN editReference');
+            console.log(err);
+            res.status(500).send('Editing the reference failed!');
+        }
     }
 };

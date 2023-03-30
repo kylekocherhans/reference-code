@@ -15,15 +15,15 @@ const AddReference = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // axios.post("/api/references", { title, description, snippet, notes, userId })
-        // .then(() => {
-        //     navigate("/home");
-        // })
-        // .catch((err) => console.log(err));
+        const body = {
+            title,
+            description,
+            snippet,
+            notes,
+            userId
+        };
 
-        console.log("SUMBIT")
-
-        axios.post("/api/references", { title, description, snippet, notes, userId }, {
+        axios.post("/api/references", body, {
             headers: {
                 authorization: token
             }

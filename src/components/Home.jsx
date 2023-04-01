@@ -9,7 +9,7 @@ const Home = () => {
 
     const [references, setReferences] = useState([]);
 
-    useEffect(() => {
+    const getReferences = () => {
         axios.get(`/api/userReferences/${userId}`, {
             headers: {
                 authorization: token
@@ -22,12 +22,16 @@ const Home = () => {
         .catch(err => {
             console.log(err);
         });
+    }
+
+    useEffect(() => {
+        getReferences();
     }, []);
 
     return (
         <div>
             {references.map(reference => {
-                return <ReferenceCard reference={reference} key={reference.id}/>
+                return <ReferenceCard reference={reference} getReferences={getReferences} key={reference.id}/>
             })}
         </div>
     );

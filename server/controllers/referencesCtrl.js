@@ -5,7 +5,10 @@ module.exports = {
         try {
             const { userId } = req.params;
             const references = await Reference.findAll({
-                where: {userId: userId}
+                where: {userId: userId},
+                order: [
+                    ["updatedAt", "DESC"]
+                ]
             });
 
             res.status(200).send(references);
@@ -75,6 +78,20 @@ module.exports = {
             console.log('ERROR IN editReference');
             console.log(err);
             res.status(500).send('Editing the reference failed!');
+        }
+    },
+
+    deleteReference: async (req, res) => {
+        try {
+            const { id } = req.params;
+
+            await Reference.destroy({ where: {id} });
+
+            res.sendStatus(200);
+        } catch (err) {
+            console.log('ERROR IN deleteReference');
+            console.log(err);
+            res.status(500).send('Deleting the reference failed!');
         }
     }
 };

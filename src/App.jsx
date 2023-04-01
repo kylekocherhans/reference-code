@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route index element={authCtx.token ? <Home/> : <Navigate to='/login'/>}/>
         <Route path='/add' element={authCtx.token ? <AddReference/> :   <Navigate to='/login'/>}/>
-        <Route path='/view/:id' element={authCtx.token ? <ViewReference/> : <Navigate to='/login'/>}/>
+        <Route path='/view/:id/:edit' element={authCtx.token ? <ViewReference/> : <Navigate to='/login'/>}/>
         <Route path='/login' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>
         <Route path='*' element={<Navigate to='/'/>}/>        
       </Routes>

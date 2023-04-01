@@ -1,40 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AuthContext from "../store/authContext";
 import { CopyBlock, dracula } from "react-code-blocks";
 
 const ViewReference = () => {
-    const { id } = useParams();
+    const { id, edit } = useParams();
     const { token, userId } = useContext(AuthContext);
     const [reference, setReference] = useState({});
-    const [editing, setEditing] = useState(false);
+    const [editing, setEditing] = useState(edit === "true" ? true : false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [snippet, setSnippet] = useState('');
     const [notes, setNotes] = useState('');
-    
-    const saveHandler = () => {
-        const body = {
-            id,
-            title,
-            description,
-            snippet,
-            notes,
-            userId
-        };
-
-        axios.put(`/api/references/${id}`, body, {
-            headers: {
-                authorization: token
-            }
-        })
-        .then((res) => {
-            setEditing(false);
-            setReference(res.data);
-        })
-        .catch((err) => console.log(err));
-    };
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`/api/references/${id}`, {
@@ -52,6 +31,40 @@ const ViewReference = () => {
         })
         .catch((err) => console.log(err));
     }, []);
+    
+    const saveHandler = () => {
+        const body = {
+            id,
+            title,
+            description,
+            snippet,
+            notes,
+            userId
+        };
+
+        axios.put(`/api/references`, body, {
+            headers: {
+                authorization: token
+            }
+        })
+        .then((res) => {
+            setEditing(false);
+            setReference(res.data);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    const deleteHandler = () => {
+        axios.delete(`/api/references/${id}`, {
+            headers: {
+                authorization: token
+            }
+        })
+        .then((res) => {
+            navigate(`/`);
+        })
+        .catch((err) => console.log(err));
+    };
 
     return (
         <>
@@ -96,7 +109,8 @@ const ViewReference = () => {
                 </div>
             ) : (
                 <div>
-                    <button onClick={e => setEditing(!editing)}>Edit</button>
+                    <button onClick={() => setEditing(!editing)}>Edit</button>
+                    <button onClick={() => deleteHandler()}>Delete</button>
                     <h2>{reference.title}</h2>
                     <h3>{reference.description}</h3>
                     <div className="code-container">

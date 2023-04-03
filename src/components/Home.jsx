@@ -8,6 +8,7 @@ const Home = () => {
     const {userId, token} = useContext(AuthContext);
 
     const [references, setReferences] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const getReferences = () => {
         axios.get(`/api/userReferences/${userId}`, {
@@ -30,9 +31,34 @@ const Home = () => {
 
     return (
         <div>
-            {references.map(reference => {
-                return <ReferenceCard reference={reference} getReferences={getReferences} key={reference.id}/>
-            })}
+            <input
+                id="search-input"
+                type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <div>
+                {references
+                    .filter((reference) => {
+                        let title = reference.title.toLowerCase();
+                        let description = reference.description.toLowerCase();
+                        let searchParams = searchTerm.toLowerCase();
+                        return (
+                            title.includes(searchParams) ||
+                            description.includes(searchParams)
+                        );
+                    })
+                    .map((reference) => {
+                        return (
+                            <ReferenceCard
+                                reference={reference}
+                                getReferences={getReferences}
+                                key={reference.id}
+                            />
+                        );
+                    })}
+            </div>
         </div>
     );
 };

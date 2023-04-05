@@ -30,7 +30,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
+        <main>
             <input
                 id="search-input"
                 type="text"
@@ -59,7 +59,7 @@ const Home = () => {
                         );
                     })}
             </div>
-        </div>
+        </main>
     );
 };
 

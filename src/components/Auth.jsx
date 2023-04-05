@@ -35,26 +35,29 @@ const Auth = () => {
     };
 
     return (
-        <div>
-            <h2>{register ? "Create an account" : "Log in to your account"}</h2>
-            <form onSubmit={e => handleSubmit(e)}>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button>{register ? "Create Account" : "Login"}</button>
-            </form>
-            <button onClick={() => setRegister(!register)}>
-                Need to {register ? "Login" : "Sign Up"}?
-            </button>
+        <div id="auth-container">
+            <div id="auth-content">
+                <h2>{register ? "Create an account" : "Log in to your account"}</h2>
+                <form id="login-form"onSubmit={e => handleSubmit(e)}>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button id="login-btn" className="blue-btn">{register ? "Create Account" : "Login"}</button>
+                </form>
+                <div className="line"></div>
+                <a href="#" onClick={() => setRegister(!register)}>
+                    {register ? "Already have an account? Login" : "Don't have an account? Sign Up"}
+                </a>
+            </div>
         </div>
     );
 };

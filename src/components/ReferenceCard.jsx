@@ -11,11 +11,13 @@ const ReferenceCard = ({ reference, getReferences }) => {
         navigate(`/view/${reference.id}/false`);
     };
 
-    const editHandler = () => {
+    const editHandler = (e) => {
+        e.stopPropagation();
         navigate(`/view/${reference.id}/true`);
     };
 
-    const deleteHandler = () => {
+    const deleteHandler = (e) => {
+        e.stopPropagation();
         axios.delete(`/api/references/${reference.id}`, {
             headers: {
                 authorization: token
@@ -28,12 +30,15 @@ const ReferenceCard = ({ reference, getReferences }) => {
     };
 
     return (
-        <div className="reference-card">
-            <h2>{reference.title}</h2>
-            <h3>{reference.description}</h3>
-            <button onClick={viewHandler}>View</button>
-            <button onClick={editHandler}>Edit</button>
-            <button onClick={deleteHandler}>Delete</button>
+        <div className="reference-card" onClick={viewHandler}>
+            <div className="card-info">
+                <h3 className="card-title">{reference.title}</h3>
+                <div>{reference.description}</div>
+            </div>
+            <div className="card-actions">
+                <button onClick={(e) => editHandler(e)}>Edit</button>
+                <button className="delete-btn" onClick={(e) => deleteHandler(e)}>Delete</button>
+            </div>
         </div>
     );
 };

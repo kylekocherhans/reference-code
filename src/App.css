@@ -59,16 +59,16 @@ body * {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
-main {
-    /* background-color: #ebeced; */
-}
-
 h1 {
     font-size: 40px;
 }
 
 h2 {
     font-size: 30px;
+}
+
+h3 {
+    font-size: 20px;
 }
 
 button {
@@ -113,7 +113,7 @@ nav button {
     border-radius: 4px;
 }
 
-#logout-btn {
+/* #logout-btn {
 	padding: 10px 15px;
 	color: #1976d2;
 	text-decoration: none;
@@ -127,10 +127,86 @@ nav button {
 #logout-btn:hover {
 	color: #1667b8;
     border-color: #1667b8;
+} */
+
+
+
+
+
+
+
+
+
+
+main {
+    height: 90vh;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ebeced;
 }
 
+#search-input {
+    width: 300px;
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 16px;
+}
 
+#references-container {
+    width: 80%;
+}
 
+.reference-card {
+    /* height: 80px; */
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+    /* border: 1px solid black; */
+    cursor: pointer;
+}
+
+.reference-card:hover {
+    background-color: lightblue;
+}
+
+.reference-card:hover .card-actions {
+    display: flex;
+}
+
+.card-title {
+    margin-bottom: 10px;
+}
+
+.card-actions {
+    /* display: none; */
+    display: flex;
+    align-items: center;
+}
+
+.card-actions button {
+    margin-left: 10px;
+    padding: 10px 15px;
+	text-decoration: none;
+	transition: .3s;
+	font-size: 16px;
+	background: transparent;
+    border-radius: 4px;
+}
+
+.edit-btn {
+    color: gray;
+    border: 2px solid gray;
+}
+
+.delete-btn {
+    color: red;
+    border: 2px solid red;
+}
 
 
 

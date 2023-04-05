@@ -38,7 +38,7 @@ const Home = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <div>
+            <div id="references-container">
                 {references
                     .filter((reference) => {
                         let title = reference.title.toLowerCase();

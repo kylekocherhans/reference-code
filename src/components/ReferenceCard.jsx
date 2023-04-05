@@ -36,8 +36,8 @@ const ReferenceCard = ({ reference, getReferences }) => {
                 <div>{reference.description}</div>
             </div>
             <div className="card-actions">
-                <button onClick={(e) => editHandler(e)}>Edit</button>
-                <button className="delete-btn" onClick={(e) => deleteHandler(e)}>Delete</button>
+                <button className="card-btn gray-outline-btn" onClick={(e) => editHandler(e)}>Edit</button>
+                <button className="card-btn red-outline-btn" onClick={(e) => deleteHandler(e)}>Delete</button>
             </div>
         </div>
     );

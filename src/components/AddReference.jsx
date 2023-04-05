@@ -12,7 +12,7 @@ const AddReference = () => {
     const [snippet, setSnippet] = useState("");
     const [notes, setNotes] = useState("");
 
-    const handleSubmit = (e) => {
+    const saveHandler = (e) => {
         e.preventDefault();
 
         const body = {
@@ -34,40 +34,49 @@ const AddReference = () => {
         .catch(err => console.log(err));
     };
 
+    const cancelHandler = () => {
+        navigate('/home');
+    };
+
     return (
-        <div>
-            <form id="add-form" onSubmit={handleSubmit}>
-                <label htmlFor="title">Title</label>
-                <input
-                    id="title"
-                    type="text"
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <label htmlFor="description">Description</label>
-                <input
-                    id="description"
-                    type="text"
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-                <label htmlFor="snippet">Code Snippet</label>
-                <textarea
-                    id="snippet"
-                    name="snippet"
-                    cols="30"
-                    rows="10"
-                    onChange={(e) => setSnippet(e.target.value)}
-                ></textarea>
-                <label htmlFor="notes">Notes</label>
-                <textarea
-                    id="notes"
-                    name="notes"
-                    cols="30"
-                    rows="10"
-                    onChange={(e) => setNotes(e.target.value)}
-                ></textarea>
-                <button>Save</button>
-            </form>
-        </div>
+        <main>
+            <div className="stack">
+                <form id="add-form">
+                    <label htmlFor="title">Title</label>
+                    <input
+                        id="title"
+                        type="text"
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <label htmlFor="description">Description</label>
+                    <input
+                        id="description"
+                        type="text"
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <label htmlFor="snippet">Code Snippet</label>
+                    <textarea
+                        id="snippet"
+                        name="snippet"
+                        cols="30"
+                        rows="10"
+                        onChange={(e) => setSnippet(e.target.value)}
+                    ></textarea>
+                    <label htmlFor="notes">Notes</label>
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        cols="30"
+                        rows="10"
+                        onChange={(e) => setNotes(e.target.value)}
+                    ></textarea>
+                </form>
+                <div className="form-btns">
+                    <button onClick={cancelHandler}>Cancel</button>
+                    <button onClick={(e) => saveHandler(e)}>Save</button>
+                </div>
+            </div>
+        </main>
     );
 };
 

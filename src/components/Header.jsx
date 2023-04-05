@@ -9,9 +9,9 @@ const Header = () => {
         <header>
             <h1>Reference Code</h1>
             <nav>
-                <NavLink to='/'><button>Home</button></NavLink>
-                <NavLink to='/add'><button>Add Reference</button></NavLink>
-                <button id="logout-btn" onClick={() => authCtx.logout()}>Logout</button>
+                <NavLink to='/'><button className="txt-btn">Home</button></NavLink>
+                <NavLink to='/add'><button className="txt-btn">Add Reference</button></NavLink>
+                <button id="logout-btn" className="txt-btn" onClick={() => authCtx.logout()}>Logout</button>
             </nav>
         </header>
     );

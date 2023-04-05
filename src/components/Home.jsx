@@ -31,33 +31,35 @@ const Home = () => {
 
     return (
         <main>
-            <input
-                id="search-input"
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div id="references-container">
-                {references
-                    .filter((reference) => {
-                        let title = reference.title.toLowerCase();
-                        let description = reference.description.toLowerCase();
-                        let searchParams = searchTerm.toLowerCase();
-                        return (
-                            title.includes(searchParams) ||
-                            description.includes(searchParams)
-                        );
-                    })
-                    .map((reference) => {
-                        return (
-                            <ReferenceCard
-                                reference={reference}
-                                getReferences={getReferences}
-                                key={reference.id}
-                            />
-                        );
-                    })}
+            <div className="stack">
+                <input
+                    id="search-input"
+                    type="text"
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <div id="references-container">
+                    {references
+                        .filter((reference) => {
+                            let title = reference.title.toLowerCase();
+                            let description = reference.description.toLowerCase();
+                            let searchParams = searchTerm.toLowerCase();
+                            return (
+                                title.includes(searchParams) ||
+                                description.includes(searchParams)
+                            );
+                        })
+                        .map((reference) => {
+                            return (
+                                <ReferenceCard
+                                    reference={reference}
+                                    getReferences={getReferences}
+                                    key={reference.id}
+                                />
+                            );
+                        })}
+                </div>
             </div>
         </main>
     );

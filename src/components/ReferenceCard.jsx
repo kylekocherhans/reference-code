@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from '../store/authContext';
 import axios from 'axios';
 
+import CardMenu from './CardMenu';
+
 const ReferenceCard = ({ reference, getReferences }) => {
     const navigate = useNavigate();
     const {token} = useContext(AuthContext);
@@ -35,10 +37,11 @@ const ReferenceCard = ({ reference, getReferences }) => {
                 <h3 className="card-title">{reference.title}</h3>
                 <div>{reference.description}</div>
             </div>
-            <div className="card-actions">
+            <CardMenu editHandler={editHandler} deleteHandler={deleteHandler}/>
+            {/* <div className="card-actions">
                 <button className="card-btn gray-outline-btn" onClick={(e) => editHandler(e)}>Edit</button>
                 <button className="card-btn red-outline-btn" onClick={(e) => deleteHandler(e)}>Delete</button>
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -2,6 +2,10 @@ import { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import AuthContext from './store/authContext';
 import './App.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 import Header from './components/Header';
 import Auth from './components/Auth';

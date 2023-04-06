@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 
 const CardMenu = ({ editHandler, deleteHandler }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,6 +27,7 @@ const CardMenu = ({ editHandler, deleteHandler }) => {
     };
 
     return (
+        <ScopedCssBaseline sx={{backgroundColor: "transparent"}}>
         <div className="card-menu">
             <IconButton
                 id="basic-button"
@@ -44,6 +46,11 @@ const CardMenu = ({ editHandler, deleteHandler }) => {
                 MenuListProps={{
                     "aria-labelledby": "basic-button",
                 }}
+                PaperProps={{  
+                    style: {  
+                      width: 110,  
+                    },  
+                 }} 
                 anchorOrigin={{
                     vertical: "bottom",
                     horizontal: "right",
@@ -58,17 +65,18 @@ const CardMenu = ({ editHandler, deleteHandler }) => {
                     onClick={(e) => handleCloseWithCallback(e, editHandler)}
                 >
                     <EditIcon />
-                    <ListItemText sx={{marginLeft: "5px"}}>Edit</ListItemText>
+                    <ListItemText sx={{marginLeft: "6px"}}>Edit</ListItemText>
                 </MenuItem>
                 <MenuItem
                     sx={{ color: "red" }}
                     onClick={(e) => handleCloseWithCallback(e, deleteHandler)}
                 >
                     <DeleteIcon />
-                    <ListItemText sx={{marginLeft: "5px"}}>Delete</ListItemText>
+                    <ListItemText sx={{marginLeft: "6px"}}>Delete</ListItemText>
                 </MenuItem>
             </Menu>
         </div>
+        </ScopedCssBaseline>
     );
 };
 

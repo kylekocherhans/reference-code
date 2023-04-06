@@ -294,9 +294,9 @@ main {
     align-items: center;
 }
 
-#view-description {
+/* #view-description {
     
-}
+} */
 
 #code-container {
     font-family: "Fira Code";
@@ -346,6 +346,10 @@ main {
 
 #add-form input, #add-form textarea {
     margin-bottom: 30px;
+}
+
+#add-form textarea {
+    resize: vertical;
 }
 
 .form-btns button {
@@ -416,9 +420,9 @@ main {
     /* text-decoration-color: inherit; */
 }
 
-#login-btn {
-    /* padding: 10px; */
-}
+/* #login-btn {
+    padding: 10px;
+} */
 
 .blue-btn {
     border: none;

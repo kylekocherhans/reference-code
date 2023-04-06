@@ -1,11 +1,11 @@
-import {useState, useEffect, useContext} from 'react';
-import axios from 'axios';
-import AuthContext from '../store/authContext';
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import AuthContext from "../store/authContext";
 
-import ReferenceCard from './ReferenceCard';
+import ReferenceCard from "./ReferenceCard";
 
 const Home = () => {
-    const {userId, token} = useContext(AuthContext);
+    const { userId, token } = useContext(AuthContext);
 
     const [references, setReferences] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -16,14 +16,14 @@ const Home = () => {
                 authorization: token
             }
         })
-        .then(res => {
+        .then((res) => {
             console.log(res.data);
             setReferences(res.data);
         })
-        .catch(err => {
+        .catch((err) => {
             console.log(err);
         });
-    }
+    };
 
     useEffect(() => {
         getReferences();
@@ -31,7 +31,7 @@ const Home = () => {
 
     return (
         <main>
-            <div className="stack">
+            <div className="home-content">
                 <input
                     id="search-input"
                     type="text"

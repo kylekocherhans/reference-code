@@ -2,9 +2,9 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const CardMenu = ({editHandler, deleteHandler}) => {
+const CardMenu = ({ editHandler, deleteHandler }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (e) => {
@@ -41,12 +41,29 @@ const CardMenu = ({editHandler, deleteHandler}) => {
                 MenuListProps={{
                     "aria-labelledby": "basic-button",
                 }}
+                anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                }}
+                transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                }}
             >
-                <MenuItem onClick={(e) => handleCloseWithCallback(e, editHandler)}>Edit</MenuItem>
-                <MenuItem sx={{color: "red"}} onClick={(e) => handleCloseWithCallback(e, deleteHandler)}>Delete</MenuItem>
+                <MenuItem
+                    onClick={(e) => handleCloseWithCallback(e, editHandler)}
+                >
+                    Edit
+                </MenuItem>
+                <MenuItem
+                    sx={{ color: "red" }}
+                    onClick={(e) => handleCloseWithCallback(e, deleteHandler)}
+                >
+                    Delete
+                </MenuItem>
             </Menu>
         </div>
     );
-}
+};
 
 export default CardMenu;

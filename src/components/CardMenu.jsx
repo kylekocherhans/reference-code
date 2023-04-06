@@ -2,7 +2,10 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import ListItemText from '@mui/material/ListItemText';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const CardMenu = ({ editHandler, deleteHandler }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -51,15 +54,18 @@ const CardMenu = ({ editHandler, deleteHandler }) => {
                 }}
             >
                 <MenuItem
+                    sx={{ color: "#595959" }}
                     onClick={(e) => handleCloseWithCallback(e, editHandler)}
                 >
-                    Edit
+                    <EditIcon />
+                    <ListItemText sx={{marginLeft: "5px"}}>Edit</ListItemText>
                 </MenuItem>
                 <MenuItem
                     sx={{ color: "red" }}
                     onClick={(e) => handleCloseWithCallback(e, deleteHandler)}
                 >
-                    Delete
+                    <DeleteIcon />
+                    <ListItemText sx={{marginLeft: "5px"}}>Delete</ListItemText>
                 </MenuItem>
             </Menu>
         </div>

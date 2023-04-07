@@ -71,6 +71,25 @@ const ViewReference = () => {
         .catch((err) => console.log(err));
     };
 
+    const snippetOnChangeHandler = (e) => {
+        adjustTextareaHeight(e);
+        setSnippet(e.target.value);
+    };
+    
+    const notesOnChangeHandler = (e) => {
+        adjustTextareaHeight(e);
+        console.log("NOTES CHANGED");
+        
+        setNotes(e.target.value);
+    };
+
+    const adjustTextareaHeight = (e) => {
+        e.target.style.height = '200px';
+        if (e.target.scrollHeight > e.target.clientHeight) {
+            e.target.style.height = e.target.scrollHeight + 'px';
+        }
+    };
+
     return (
         <main>
             {editing ? (
@@ -98,7 +117,7 @@ const ViewReference = () => {
                                 cols="30"
                                 rows="10"
                                 value={snippet}
-                                onChange={(e) => setSnippet(e.target.value)}
+                                onChange={(e) => snippetOnChangeHandler(e)}
                             ></textarea>
                             <label htmlFor="notes">Notes</label>
                             <textarea
@@ -107,12 +126,12 @@ const ViewReference = () => {
                                 cols="30"
                                 rows="10"
                                 value={notes}
-                                onChange={(e) => setNotes(e.target.value)}
+                                onChange={(e) => notesOnChangeHandler(e)}
                             ></textarea>
                         </form>
                         <div className="form-btns">
                             <button className="gray-btn" onClick={e => setEditing(!editing)}>Cancel</button>
-                            <button className="blue-btn" onClick={saveHandler}>Save</button>
+                            <button className="green-btn" onClick={saveHandler}>Save</button>
                         </div>
                     </div>
                 </div>

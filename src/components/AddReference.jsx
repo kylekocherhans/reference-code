@@ -38,6 +38,24 @@ const AddReference = () => {
         navigate('/home');
     };
 
+    const snippetOnChangeHandler = (e) => {
+        adjustTextareaHeight(e);
+        setSnippet(e.target.value);
+    };
+    
+    const notesOnChangeHandler = (e) => {
+        adjustTextareaHeight(e);
+        
+        setNotes(e.target.value);
+    };
+
+    const adjustTextareaHeight = (e) => {
+        e.target.style.height = '200px';
+        if (e.target.scrollHeight > e.target.clientHeight) {
+            e.target.style.height = e.target.scrollHeight + 'px';
+        }
+    };
+
     return (
         <main>
             <div id="add-container">
@@ -61,7 +79,7 @@ const AddReference = () => {
                             name="snippet"
                             cols="30"
                             rows="10"
-                            onChange={(e) => setSnippet(e.target.value)}
+                            onChange={(e) => snippetOnChangeHandler(e)}
                         ></textarea>
                         <label htmlFor="notes">Notes</label>
                         <textarea
@@ -69,12 +87,12 @@ const AddReference = () => {
                             name="notes"
                             cols="30"
                             rows="10"
-                            onChange={(e) => setNotes(e.target.value)}
+                            onChange={(e) => notesOnChangeHandler(e)}
                         ></textarea>
                     </form>
                     <div className="form-btns">
                         <button className="gray-btn" onClick={cancelHandler}>Cancel</button>
-                        <button className="blue-btn" onClick={(e) => saveHandler(e)}>Save</button>
+                        <button className="green-btn" onClick={(e) => saveHandler(e)}>Save</button>
                     </div>
                 </div>
             </div>
